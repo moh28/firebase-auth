@@ -16,7 +16,7 @@ class _LogInScreenState extends State<LogInScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: colorGery2,
+      backgroundColor: primaryColor,
       body: SingleChildScrollView(
         child: Form(
           key: formKey,

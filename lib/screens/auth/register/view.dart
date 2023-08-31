@@ -22,7 +22,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: colorGery2,
+        backgroundColor: primaryColor,
         body: SingleChildScrollView(
           child: Form(
             key: bloc.formKey,

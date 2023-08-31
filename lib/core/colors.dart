@@ -1,19 +1,15 @@
 import 'package:flutter/material.dart';
 
-const primaryColor = Colors.blue;
+const primaryColor = Colors.blueGrey;
 const secondColor = Colors.grey;
-const colorGery2 = Colors.blueGrey;
 const authBorderColor=Color(0xffF3F3F3);
 const colorWhite2 = Color(0xffF1F1F1);
 const colorLModeAccentGrey = Color(0xff707070);
-
-
 final colorWhiteWithOpacity = const Color(0xffffffff).withOpacity(.6);
 MaterialColor getMaterialColor(Color color) {
   final int red = color.red;
   final int green = color.green;
   final int blue = color.blue;
-
   final Map<int, Color> shades = {
     50: Color.fromRGBO(red, green, blue, .1),
     100: Color.fromRGBO(red, green, blue, .2),
@@ -26,6 +22,5 @@ MaterialColor getMaterialColor(Color color) {
     800: Color.fromRGBO(red, green, blue, .9),
     900: Color.fromRGBO(red, green, blue, 1),
   };
-
   return MaterialColor(color.value, shades);
 }
