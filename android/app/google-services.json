@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "840534652732",
+    "project_id": "chat-app-feb15",
+    "storage_bucket": "chat-app-feb15.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:840534652732:android:a851748dc3a0adfec19039",
+        "android_client_info": {
+          "package_name": "com.example.dimo"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "840534652732-nhbqe5j9r7phnlmrbtggf3r3il80h1rr.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDCeJZDKAobAcaZ5f9M9GIlzBLq4TTVnZ4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "840534652732-nhbqe5j9r7phnlmrbtggf3r3il80h1rr.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
