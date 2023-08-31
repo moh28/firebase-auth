@@ -9,12 +9,11 @@ class RegisterBloc extends Bloc<RegisterEvents, RegisterStates> {
     on<RegisterPostEvent>(_postSignUp);
   }
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final auth = FirebaseAuth.instance;
  Future< void> _postSignUp(
       RegisterPostEvent event, Emitter<RegisterStates> emit) async {
     emit(RegisterLoadingState());
     try {
-     UserCredential user=await auth.createUserWithEmailAndPassword(email: event.emailController.text,
+     UserCredential user=await  FirebaseAuth.instance.createUserWithEmailAndPassword(email: event.emailController.text,
           password: event.passwordController.text);
      if(user.user?.uid!=null) {
        emit(RegisterSuccessState());

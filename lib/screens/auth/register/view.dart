@@ -18,7 +18,6 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final bloc = KiwiContainer().resolve<RegisterBloc>();
   final event = RegisterPostEvent();
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
