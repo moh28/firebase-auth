@@ -10,7 +10,6 @@ import '../../../core/app_router.dart';
 import 'bloc/bloc.dart';
 import 'bloc/events.dart';
 import 'bloc/states.dart';
-
 class RegisterScreen extends StatefulWidget {
   const RegisterScreen({Key? key}) : super(key: key);
   @override
@@ -19,16 +18,14 @@ class RegisterScreen extends StatefulWidget {
 class _RegisterScreenState extends State<RegisterScreen> {
   final bloc = KiwiContainer().resolve<RegisterBloc>();
   final event = RegisterPostEvent();
-  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
-  final passwordController=TextEditingController();
-  final userController=TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: colorGery2,
         body: SingleChildScrollView(
           child: Form(
-            key: formKey,
+            key: bloc.formKey,
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 31),
               child: Column(
@@ -48,7 +45,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       },
                       hint: 'Email',
                     ),
-
                     AppInput(
                       secureText: true,
                       controller:event.passwordController,
@@ -69,7 +65,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         top: 31,
                         bottom: 31,
                         onTap: () {
-                          final FormState form = formKey.currentState!;
+                          final FormState form = bloc.formKey.currentState!;
                           if (form.validate()) {
                             bloc.add(event);
                           }

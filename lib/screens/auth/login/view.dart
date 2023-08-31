@@ -12,7 +12,7 @@ class LogInScreen extends StatefulWidget {
 class _LogInScreenState extends State<LogInScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final passwordController=TextEditingController();
-  final userController=TextEditingController();
+  final emailController=TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -29,7 +29,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   height: 300,
                 ),
                 AppInput(bottom: 16,
-                  controller: userController,
+                  controller: emailController,
                   validate: (value) {
                     if (value!.isEmpty) {
                       return"Email";

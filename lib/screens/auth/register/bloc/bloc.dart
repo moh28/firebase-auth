@@ -1,12 +1,14 @@
 
 import 'package:dimo/screens/auth/register/bloc/states.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'events.dart';
 class RegisterBloc extends Bloc<RegisterEvents, RegisterStates> {
   RegisterBloc() : super((RegisterInitialState())) {
     on<RegisterPostEvent>(_postSignUp);
   }
+  final GlobalKey<FormState> formKey = GlobalKey<FormState>();
   final auth = FirebaseAuth.instance;
  Future< void> _postSignUp(
       RegisterPostEvent event, Emitter<RegisterStates> emit) async {
