@@ -1,6 +1,9 @@
 
+import 'package:dimo/screens/chat/bloc/bloc.dart';
 import 'package:flutter/material.dart';
+import 'package:kiwi/kiwi.dart';
 import '../../core/colors.dart';
+import 'bloc/events.dart';
 import 'component/item_chat.dart';
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key, });
@@ -8,6 +11,8 @@ class ChatPage extends StatefulWidget {
   ChatPageState createState() => ChatPageState();
 }
 class ChatPageState extends State<ChatPage> {
+  final bloc = KiwiContainer().resolve<ChatBloc>();
+  final event = SendMessageEvent();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -34,7 +39,7 @@ class ChatPageState extends State<ChatPage> {
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         color: Colors.white,
         child: TextField(
-          controller: TextEditingController(),
+          controller: event.sendMessageController,
           decoration: InputDecoration(
             hintText:"write your message here",
             suffixIcon: Container(
@@ -44,7 +49,8 @@ class ChatPageState extends State<ChatPage> {
               padding: const EdgeInsets.all(14),
               child: GestureDetector(
                 onTap: (){
-
+                  bloc.add(event);
+                  event.sendMessageController.clear();
                 },
                 child: const Icon(
                   Icons.send_rounded,

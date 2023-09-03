@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+
+import 'item_avatar.dart';
 class ItemChat extends StatelessWidget {
   final int chat;
   final String?avatar;
@@ -13,16 +15,16 @@ class ItemChat extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.end,
       children: [
         chat==2?Text('$time',style: TextStyle(color: Colors.grey.shade400),):Container(),
-       /* chat==1?ItemAvatar(
+        chat==1?ItemAvatar(
           image: avatar,
           size: 50,
-        ):Container(),*/
+        ):Container(),
         Flexible(
           child: Container(
             margin: const EdgeInsetsDirectional.only(end: 10, start: 10, top: 20),
             padding:  const EdgeInsets.all(20),
             decoration: BoxDecoration(
-              color: chat == 1 ? Colors.blue.shade100 : Colors.blue.shade50,
+              color: chat == 1 ? Colors.blue.shade50:Colors.blueGrey.shade100,
               borderRadius: chat == 1
                   ?  const BorderRadius.only(
                 topLeft: Radius.circular(30),
