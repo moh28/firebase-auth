@@ -1,3 +1,4 @@
+import 'package:dimo/screens/auth/login/view.dart';
 import 'package:dimo/screens/auth/register/view.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter Demo',
       builder: (context,child)=>child!,
-      home:const RegisterScreen(),
+      home:const LogInScreen(),
     );
   }
 }

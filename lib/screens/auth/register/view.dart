@@ -73,26 +73,26 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       );  },
                       listener: (BuildContext context, Object? state) {
                         if (state is RegisterSuccessState) {
-                          ScaffoldMessenger.of(context).showSnackBar( const SnackBar(
-                            content: Text('Registered Successfully'),
+                          ScaffoldMessenger.of(context).showSnackBar(  SnackBar(
+                            content: Text(state.msg),
                           ));
                           AppRouter.navigateAndFinish(context, const LogInScreen());
                         } else if (state is RegisterWeakPasswordState) {
-                          ScaffoldMessenger.of(context).showSnackBar( const SnackBar(
-                            content: Text("The password provided is too weak."),
+                          ScaffoldMessenger.of(context).showSnackBar(  SnackBar(
+                            content: Text(state.msg),
                           ));
                         }
                         else if(state is RegisterAlreadyExistsState){
-                          ScaffoldMessenger.of(context).showSnackBar( const SnackBar(
-                            content: Text('The account already exists for that email.'),
+                          ScaffoldMessenger.of(context).showSnackBar(  SnackBar(
+                            content: Text(state.msg),
                           ));
                         }else if(state is RegisterErrorState){
-                          ScaffoldMessenger.of(context).showSnackBar( const SnackBar(
-                            content: Text('No Internet Connection'),
+                          ScaffoldMessenger.of(context).showSnackBar(  SnackBar(
+                            content: Text(state.msg),
                           ));
                         }else if(state is RegisterNoTokenState){
-                          ScaffoldMessenger.of(context).showSnackBar( const SnackBar(
-                            content: Text('Oops there is a problem'),
+                          ScaffoldMessenger.of(context).showSnackBar(  SnackBar(
+                            content: Text(state.msg),
                           ));
                         }
                       },

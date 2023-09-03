@@ -16,20 +16,18 @@ class RegisterBloc extends Bloc<RegisterEvents, RegisterStates> {
      UserCredential user=await  FirebaseAuth.instance.createUserWithEmailAndPassword(email: event.emailController.text,
           password: event.passwordController.text);
      if(user.user?.uid!=null) {
-       emit(RegisterSuccessState());
+       emit(RegisterSuccessState('Registered Successfully'));
      }else if(user.user?.uid==null){
-       emit(RegisterNoTokenState());
+       emit(RegisterNoTokenState("Oops there is a problem"));
      }
     }on FirebaseAuthException catch (e) {
       if (e.code == 'weak-password') {
-        print('The password provided is too weak.');
-        emit(RegisterWeakPasswordState());
+        emit(RegisterWeakPasswordState('The password provided is too weak.' ));
       } else if (e.code == 'email-already-in-use') {
-        print('The account already exists for that email.');
-       emit( RegisterAlreadyExistsState());
+       emit( RegisterAlreadyExistsState( 'The account already exists for that email.'));
       }
     } catch (error) {
-      emit(RegisterErrorState(msg:error.toString()));
+      emit(RegisterErrorState('Check Your Internet Connection'));
     }
   }
 }
