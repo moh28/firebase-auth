@@ -61,6 +61,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                       bloc: bloc,
                       builder: (BuildContext context, state) {
                         return AppButton(
+                          color: Colors.white,
                         top: 31,
                         bottom: 31,
                         onTap: () {
@@ -96,6 +97,34 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           ));
                         }
                       },
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 50, top: 50),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          const Text(
+                           "have an account?",
+                            style: TextStyle(
+                              fontSize: 15,
+                              color: Colors.white,
+                            ),
+                          ),
+                          TextButton(
+                            onPressed: () {
+                              AppRouter.navigateAndFinish(context, const LogInScreen());
+                            },
+                            child: const Text(
+                             'Log In now',
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontSize: 15,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ]
               ),

@@ -37,7 +37,7 @@ class AppButton extends StatelessWidget {
               borderRadius: BorderRadius.circular(borderRadius ?? 6),
             ),
             child: Center(
-              child: Text(component,style: const TextStyle(color: Colors.white),),
+              child: Text(component,style: const TextStyle(color: primaryColor),),
             )
         ),
       ),

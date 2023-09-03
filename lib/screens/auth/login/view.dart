@@ -3,6 +3,7 @@ import 'package:dimo/core/widgets/app_button.dart';
 import 'package:dimo/core/widgets/app_input.dart';
 import 'package:dimo/screens/auth/login/bloc/states.dart';
 import 'package:dimo/screens/auth/register/view.dart';
+import 'package:dimo/screens/chat/view.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:kiwi/kiwi.dart';
@@ -65,6 +66,7 @@ class _LogInScreenState extends State<LogInScreen> {
                   bloc: bloc,
                   builder: (BuildContext context, state) {
                     return AppButton(
+                      color: Colors.white,
                       top: 31,
                       bottom: 31,
                       onTap: () {
@@ -82,7 +84,7 @@ class _LogInScreenState extends State<LogInScreen> {
                         content: Text(state.msg),
                       ));
                       AppRouter.navigateAndFinish(
-                          context, const RegisterScreen());
+                          context, const ChatPage());
                     } else if (state is LogInWrongPasswordState) {
                       ScaffoldMessenger.of(context).showSnackBar(SnackBar(
                         content: Text(state.msg),
@@ -101,6 +103,34 @@ class _LogInScreenState extends State<LogInScreen> {
                       ));
                     }
                   },
+                ),
+                Padding(
+                  padding: const EdgeInsets.only(bottom: 50, top: 50),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        'have no account?',
+                        style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.white,
+                        ),
+                      ),
+                      TextButton(
+                        onPressed: () {
+                          AppRouter.navigateAndFinish(context, const RegisterScreen());
+                        },
+                        child: const Text(
+                          ' Register now',
+                          style: TextStyle(
+                            decoration: TextDecoration.underline,
+                            fontSize: 15,
+                            color:  Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ],
             ),
