@@ -1,9 +1,11 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:dimo/screens/chat/bloc/bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:kiwi/kiwi.dart';
 import '../../core/colors.dart';
 import 'bloc/events.dart';
+import 'bloc/model.dart';
 import 'component/item_chat.dart';
 class ChatPage extends StatefulWidget {
   const ChatPage({super.key, });
@@ -11,6 +13,7 @@ class ChatPage extends StatefulWidget {
   ChatPageState createState() => ChatPageState();
 }
 class ChatPageState extends State<ChatPage> {
+  final Stream<QuerySnapshot> _usersStream = FirebaseFirestore.instance.collection('messages').snapshots();
   final bloc = KiwiContainer().resolve<ChatBloc>();
   final event = SendMessageEvent();
   @override
@@ -22,43 +25,42 @@ class ChatPageState extends State<ChatPage> {
 
         title: const Text( 'widget.data?.firstName'),
       ),
-      body:  ListView.builder(
-              reverse: true,
-              padding: const EdgeInsets.only(bottom: 150),
-              physics: const BouncingScrollPhysics(),
-              itemBuilder: (BuildContext context, int index) {return const ItemChat(
-                chat: 1,
-                message:':bloc.allMessage[index].messageText,',
-                time: '18.00',
-              );  },
-              itemCount:19,
-            ),
+      body:  StreamBuilder(
+        stream: _usersStream,
+        builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
+          if(snapshot.hasData) {
+            List<MessagesModel>messageModel=[];
+            for(int i =0;i<snapshot.data.docs.length;i++){
+              messageModel.add(MessagesModel.fromJson(snapshot.data.docs[i]));
+            }
+          return  ListView.builder(
+          reverse: false,
+          padding: const EdgeInsets.only(bottom: 150),
+          physics: const BouncingScrollPhysics(),
+          itemBuilder: (BuildContext context, int index) {return  ItemChat(
+            chat: 1,
+            message:messageModel[index].message,
+            time: '18.00',
+          );  },
+          itemCount:messageModel.length,
+        );
+        }else{
+            return const SizedBox();
+          } },
+      ),
 
       floatingActionButton:  Container(
         height: 120,
         padding: const EdgeInsets.symmetric(vertical: 30, horizontal: 20),
         color: Colors.white,
         child: TextField(
+          onSubmitted: (value){
+            bloc.add(SendMessageEvent(message: value));
+            event.sendMessageController.clear();
+          },
           controller: event.sendMessageController,
           decoration: InputDecoration(
             hintText:"write your message here",
-            suffixIcon: Container(
-              decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(50),
-                  color: primaryColor),
-              padding: const EdgeInsets.all(14),
-              child: GestureDetector(
-                onTap: (){
-                  bloc.add(event);
-                  event.sendMessageController.clear();
-                },
-                child: const Icon(
-                  Icons.send_rounded,
-                  color: Colors.white,
-                  size: 28,
-                ),
-              ),
-            ),
             filled: true,
             fillColor: Colors.blueGrey[50],
             labelStyle: const TextStyle(fontSize: 12),

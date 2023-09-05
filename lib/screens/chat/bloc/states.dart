@@ -5,3 +5,9 @@ class FailedSendMessageState extends ChatStates {
 }
 class SuccessSendMessageState extends ChatStates {
 }
+class FailedReadMessageState extends ChatStates {
+}
+class SuccessReadMessageState extends ChatStates {
+}
+class NoReadData extends ChatStates {
+}

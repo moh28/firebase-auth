@@ -11,11 +11,11 @@ class ChatBloc extends Bloc<ChatEvents, ChatStates> {
   Future< void> _postSignUp(
       SendMessageEvent event, Emitter<ChatStates> emit) async {
     emit(LoadingChatState());
-
     await message.add({
-     "message":event.sendMessageController.text
+     "message":event.message
   }).then((value) {
     emit(SuccessSendMessageState());
    }).catchError((error) {
      emit(FailedSendMessageState());});
-}}
+}
+}
